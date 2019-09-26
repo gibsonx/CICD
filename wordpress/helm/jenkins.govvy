@@ -1,0 +1,67 @@
+pipeline {
+    agent { label 'jenkins-prod-slave' }
+    parameters {
+        string(name: 'VERSION', defaultValue: 'latest', description: 'Please input your commit version here')
+		string(name: 'BRANCH', defaultValue: 'release', description: '')
+    }
+    environment {
+        ENV = "prod"
+        project_name = "wordpress"
+		BRANCH = "${params.BRANCH}"
+		TAGPREFIX = "${params.BRANCH}".replace("/", "-")
+    }
+    stages{
+        stage('Checkout') {
+            steps {
+                // deleteDir()
+                //拉取代码
+                checkout([$class           : 'GitSCM',
+                          branches         : [[name: '*/${BRANCH}']],
+                          // doGenerateSubmoduleConfigurations: false,
+                          extensions: [[$class: 'CleanBeforeCheckout']],
+                          // submoduleCfg: [],
+                          userRemoteConfigs: [[credentialsId: '0de357af-094d-4bd9-9cf5-ff320810d3c2', url: 'berniegao@vs-ssh.visualstudio.com:v3/berniegao/Tokentuber/Tokentuber' ]]])
+                sh 'git rev-parse HEAD > COMMIT_HASH'
+            }
+        }
+        stage('Release') {
+            when {
+                expression { 
+                    params.VERSION == "latest" 
+                }
+            }
+            environment{
+                COMMIT_HASH = readFile('COMMIT_HASH').trim()
+                }
+            steps {
+                dir('/home/TTServer/wordpress-nginx-docker/helm') {
+                    sh 'count=`helm list | grep -w ${project_name} | wc -l` && if [ $count -eq 0 ]; then \
+                     helm install --name ${project_name} --set wordpress.image.tag=${TAGPREFIX}-${COMMIT_HASH} .; \
+                    else \
+                        helm upgrade ${project_name} --set wordpress.image.tag=${TAGPREFIX}-${COMMIT_HASH} . ; fi'
+                }
+            }
+        }
+        stage('ROLLBACK') {
+            when {
+                expression { 
+                    params.VERSION != "latest" 
+                }
+            }
+            environment{
+                COMMIT_HASH = "${params.VERSION}"
+                }
+            steps {
+                echo "${COMMIT_HASH}"
+                dir('/home/TTServer/wordpress-nginx-docker/helm') {
+                    sh 'count=`helm list | grep -w ${project_name} | wc -l` && if [ $count -eq 0 ]; then \
+                     helm install --name ${project_name} --set wordpress.image.tag=${TAGPREFIX}-${COMMIT_HASH} .; \
+                    else \
+                        helm upgrade ${project_name} --set wordpress.image.tag=${TAGPREFIX}-${COMMIT_HASH} . ; fi'
+                }
+            }
+        }
+    }
+}
+
+

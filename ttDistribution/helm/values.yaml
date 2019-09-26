@@ -1,0 +1,43 @@
+##############Deployment##############################
+kind: Deployment
+image:
+  ttdistribution:
+    env: prod
+    repository: "tokentuber.azurecr.io/ttdistribution"
+    tag: "develop-44132b5a177ad8914e0266979786522f56762bc6"
+    pullPolicy: "IfNotPresent"
+##############Global_Configurations##################
+updateStrategy:
+  type: RollingUpdate
+ttdistribution:
+  replicas: 2
+  resources:
+    limits:
+      memory: 1024Mi
+      cpu: 500m
+    requests:
+      memory: 256Mi
+      cpu: 100m
+  podAnnotations:
+  terminationGracePeriodSeconds: 10
+  env:
+    - name: "APP_OPTS"
+      value: ""
+  envFrom:
+  ports:
+    - name: dist8082
+      containerPort: 8082
+      protocol: TCP
+  service:
+    type: NodePort
+    ports:
+      - name: dist-8082
+        port: 80
+        nodePort: 30058
+        targetPort: 8082
+        protocol: TCP
+registrykey: azureregistrykey
+mongo:
+  uri: mongodb://ttdistribution:TokenPrd312@10.240.0.5:27017,10.240.0.4:27017/ttdistribution?replicaSet=tokenprod
+  database: ttdistribution
+  

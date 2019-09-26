@@ -1,0 +1,110 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: {{ include "wordpress.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "wordpress.name" . }}
+    helm.sh/chart: {{ include "wordpress.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "wordpress.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "wordpress.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      imagePullSecrets:
+        - name: {{ .Values.azureregistrykey }}
+      containers:
+        - name: {{ .Chart.Name }}-nginx
+          image: "{{ .Values.nginx.image.repository }}:{{ .Values.nginx.image.tag }}"
+          imagePullPolicy: {{ .Values.nginx.image.pullPolicy }}
+          volumeMounts:
+          - name: wordpress-data
+            mountPath: /var/www/html
+          - name: wordpress-share
+            mountPath: {{ .Values.storage.pvc.mountpath }}  #/var/www/html/wp-content/uploads
+          - name: nginx-config
+            mountPath: /etc/nginx/conf.d
+          - name: nginx-log
+            mountPath: {{ .Values.storage.nginxlog.mountpath }} #/var/log/nginx
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.wordpress.image.repository }}:{{ .Values.wordpress.image.tag }}"
+          imagePullPolicy: {{ .Values.wordpress.image.pullPolicy }}
+          env:
+          - name: WORDPRESS_DB_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: {{ include "wordpress.fullname" . }}
+                key: wordpress_db_host
+          - name: WORDPRESS_TABLE_PREFIX
+            valueFrom:
+              configMapKeyRef:
+                name: {{ include "wordpress.fullname" . }}
+                key: wordpress_table_prefix
+          - name: WORDPRESS_DB_NAME
+            valueFrom:
+              configMapKeyRef:
+                name: {{ include "wordpress.fullname" . }}
+                key: wordpress_db_name
+          - name: WORDPRESS_DB_USER
+            valueFrom:
+              configMapKeyRef:
+                name: {{ include "wordpress.fullname" . }}
+                key: wordpress_db_user
+          - name: WORDPRESS_DB_PASSWORD
+            valueFrom:
+              configMapKeyRef:
+                name: {{ include "wordpress.fullname" . }}
+                key: wordpress_db_password
+          - name: WORDPRESS_CONFIG_EXTRA
+            valueFrom:
+              configMapKeyRef:
+                name: {{ include "wordpress.fullname" . }}
+                key: wordpress_config_extra
+          ports:
+          - name: php
+            containerPort: 9000
+            protocol: TCP
+          volumeMounts:
+          - name: wordpress-data
+            mountPath: /var/www/html
+          - name: wordpress-share
+            mountPath: {{ .Values.storage.pvc.mountpath }}  #/var/www/html/wp-content/uploads
+      volumes:
+      - name: wordpress-data
+        emptyDir: {}
+      - name: nginx-log
+        hostPath:
+          path: {{ .Values.storage.nginxlog.hostpath }}  #/var/log/nginx
+          type: DirectoryOrCreate
+      - name: nginx-config
+        configMap:
+          name: {{ include "wordpress.fullname" . }}
+          items:
+            - key: default.conf
+              path: default.conf
+          defaultMode: 420
+      - name: wordpress-share
+        persistentVolumeClaim:
+          claimName: {{ .Values.storage.pvc.claimname }}
+    {{- with .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+    {{- end }}

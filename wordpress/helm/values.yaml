@@ -1,0 +1,71 @@
+# Default values for wordpress.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+azureregistrykey: azureregistrykey
+
+replicaCount: 2
+
+nginx:
+  image:
+    repository: nginx
+    tag: 1.17.0
+    pullPolicy: IfNotPresent
+
+wordpress:
+  image:
+    repository: tokentuber.azurecr.io/tokentuber
+    tag: 2ada48c72b984578d19a2ab6fe5bb383a51b6f05
+    pullPolicy: IfNotPresent
+
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  type: ClusterIP
+  port: 80
+  targetport: 80
+
+db:
+  wordpress_db_host: tokentuberdb.mysql.database.azure.com:3306
+  wordpress_table_prefix: tt_
+  wordpress_db_name: wordpress
+  wordpress_db_user: ttengineerprod@tokentuberdb
+  wordpress_db_password: tE88XcbarHjdmHpkDvgW
+  wordpress_config_extra: define('DOMAIN_CURRENT_SITE', 'http://ttdistribution');
+
+ingress:
+  enabled: false
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  path: /
+  hosts:
+    - chart-example.local
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+storage:
+  nginxlog:
+    hostpath: /var/log/nginx
+    mountpath: /var/log/nginx
+  pvc:
+    mountpath: /var/www/html/wp-content/uploads
+    claimname: wordpress-share
+resources:
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 1000m
+    memory: 1024Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
