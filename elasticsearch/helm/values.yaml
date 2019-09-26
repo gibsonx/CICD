@@ -76,7 +76,7 @@ master:
     ## Specify the nodePort value for the LoadBalancer and NodePort service types.
     ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
     ##
-    # nodePort:
+    #nodePort: 32300
 
     ## Provide any additional annotations which may be required. This can be used to
     ## set the LoadBalancer service type to internal only.
@@ -94,7 +94,7 @@ master:
   resources:
     requests:
       cpu: 25m
-      memory: "256Mi"
+      memory: "192Mi"
   ## Elasticsearch master-eligible Liveness Probe
   livenessProbe:
     enabled: false
@@ -132,20 +132,20 @@ clusterDomain: cluster.local
 ##
 coordinating:
   name: coordinating-only
-  replicas: 2
+  replicas: 1
   heapSize: 128m
   antiAffinity: "soft"
   ## node affinity
   # nodeAffinity:
   service:
     ## coordinating-only service type
-    type: ClusterIP
+    type: NodePort
     ## Elasticsearch REST API port
     port: 9200
     ## Specify the nodePort value for the LoadBalancer and NodePort service types.
     ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
     ##
-    # nodePort:
+    nodePort: 32300
 
     ## Provide any additional annotations which may be required. This can be used to
     ## set the LoadBalancer service type to internal only.
@@ -163,7 +163,7 @@ coordinating:
   resources:
     requests:
       cpu: 25m
-      memory: "256Mi"
+      memory: "192Mi"
   ## Elasticsearch master-eligible Liveness Probe
   livenessProbe:
     enabled: false
@@ -191,7 +191,7 @@ data:
   updateStrategy:
     type: RollingUpdate
     # rollingUpdatePartition
-  heapSize: 256m
+  heapSize: 128m
   antiAffinity: "soft"
   ## node affinity
   # nodeAffinity:
@@ -203,7 +203,7 @@ data:
   resources:
     requests:
       cpu: 25m
-      memory: "384Mi"
+      memory: "192Mi"
   ## Elasticsearch master-eligible Liveness Probe
   livenessProbe:
     enabled: false
