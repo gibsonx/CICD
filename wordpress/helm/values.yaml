@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 azureregistrykey: azureregistrykey
 
-replicaCount: 2
+replicaCount: 1
 
 nginx:
   image:
@@ -14,7 +14,7 @@ nginx:
 wordpress:
   image:
     repository: tokentuber.azurecr.io/tokentuber
-    tag: 2ada48c72b984578d19a2ab6fe5bb383a51b6f05
+    tag: alpha3-05ef5983ba5e17de13a84bc520d1dd7a1d15c32b
     pullPolicy: IfNotPresent
 
 nameOverride: ""
@@ -26,12 +26,12 @@ service:
   targetport: 80
 
 db:
-  wordpress_db_host: tokentuberdb.mysql.database.azure.com:3306
+  wordpress_db_host: 10.240.0.4:3306
   wordpress_table_prefix: tt_
-  wordpress_db_name: wordpress
-  wordpress_db_user: ttengineerprod@tokentuberdb
+  wordpress_db_name: wordpressdev
+  wordpress_db_user: wordpress
   wordpress_db_password: tE88XcbarHjdmHpkDvgW
-  wordpress_config_extra: define('DOMAIN_CURRENT_SITE', 'http://ttdistribution');
+  wordpress_config_extra: define('DOMAIN_CURRENT_SITE', 'http://ttdistribution-dev');
 
 ingress:
   enabled: false

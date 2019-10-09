@@ -22,9 +22,15 @@ data:
 
             access_log /var/log/nginx/access.log;
             error_log /var/log/nginx/error.log;
+            
+            location ^~ /static/ {
+                root /var/www/html/frontend;
+            }
 
             location / {
                 try_files $uri $uri/ /index.php?$args;
+                rewrite ^/quiz/c$ /frontend/indexQuizPass.html last;
+                rewrite ^/quiz(.*)$ /frontend/index.html last;
             }
 
             location ~ \.php$ {
