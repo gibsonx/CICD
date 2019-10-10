@@ -283,7 +283,7 @@
       <option name="presentableId" value="Default" />
       <updated>1569469389636</updated>
       <workItem from="1569469391044" duration="1627000" />
-      <workItem from="1570584969621" duration="15804000" />
+      <workItem from="1570584969621" duration="15816000" />
     </task>
     <task id="LOCAL-00001" summary="add elasticsearch6.8">
       <created>1569469804455</created>
@@ -334,11 +334,18 @@
       <option name="project" value="LOCAL" />
       <updated>1570706638785</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="add helm to tokentubersearch">
+      <created>1570706852062</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1570706852062</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17431000" />
+    <option name="totallyTimeSpent" value="17443000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
