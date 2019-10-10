@@ -1,0 +1,84 @@
+{{- if eq .Values.kind "StatefulSet" }}
+apiVersion: apps/v1beta1
+{{ else }}
+apiVersion: extensions/v1beta1
+{{- end }}
+kind: {{ .Values.kind | default "Deployment" }}
+metadata:
+  name: "{{ .Release.Name }}"
+  labels:
+    app: "{{ .Release.Name }}"
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  {{- if eq .Values.kind "StatefulSet" }}
+  serviceName: "{{ .Release.Name }}"
+  {{- end }}
+  updateStrategy:
+    type: "{{ .Values.updateStrategy.type }}"
+  replicas: {{ .Values.tokentubersearch.replicas }}
+  template:
+    metadata:
+      labels:
+        app: "{{ .Release.Name }}"
+        release: "{{ .Release.Name }}"
+#---------------------- annotations ---------------------------------
+{{- if .Values.tokentubersearch.podAnnotations }}
+      annotations:
+{{ toYaml .Values.tokentubersearch.podAnnotations | indent 8 }}
+{{- end }}
+    spec:
+      volumes:
+      - name: datetime
+        hostPath:
+          path: /etc/localtime
+      imagePullSecrets:
+        - name: azureregistrykey
+      containers:
+#---------------------- image ---------------------------------------
+      - name: "{{ .Release.Name }}"
+        image: "{{ .Values.image.tokentubersearch.repository }}:{{ .Values.image.tokentubersearch.tag }}"
+        imagePullPolicy: {{ .Values.image.tokentubersearch.pullPolicy }}
+#---------------------- env -----------------------------------------
+{{- if .Values.envFrom }}
+        envFrom:
+{{ toYaml .Values.envFrom | indent 8 }}
+{{- end }}
+        env:
+        - name:   ELASTICSEARCH_HOST
+          value: {{ .Values.elasticsearch.host }}
+        - name:  ELASTICSEARCH_PORT
+          value: {{ .Values.elasticsearch.host }}
+        - name:  ELASTICSEARCH_SCHEMA
+          value: {{ .Values.elasticsearch.schema }}
+        - name:  ELASTICSEARCH_NAME
+          value: {{ .Values.elasticsearch.username }}
+        - name:  ELASTICSEARCH_PASSWORD
+          value: {{ .Values.elasticsearch.password }}
+        - name: KUBERNETES_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+{{- if .Values.env }}
+{{ toYaml .Values.env | indent 8 }}
+{{- end }}
+#---------------------- ports ---------------------------------------
+        ports:
+{{- if .Values.tokentubersearch.ports }}
+{{ toYaml .Values.tokentubersearch.ports | indent 8 }}
+{{- end }}
+#---------------------- resources -----------------------------------
+{{- if .Values.tokentubersearch.resources }}
+        resources:
+{{ toYaml .Values.tokentubersearch.resources | indent 10 }}
+{{- end }}
+        volumeMounts:
+        - name: datetime
+          readOnly: true
+          mountPath: /etc/localtime
+

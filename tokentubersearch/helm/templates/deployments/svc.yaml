@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: "{{ .Release.Name }}"
+  labels:
+    app: "{{ .Release.Name }}"
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  type: {{ .Values.tokentubersearch.service.type }}
+  ports:
+{{- if .Values.tokentubersearch.service.ports }}
+{{ toYaml .Values.tokentubersearch.service.ports | indent 4 }}
+{{- end }}
+  selector:
+    app: "{{ .Release.Name }}"

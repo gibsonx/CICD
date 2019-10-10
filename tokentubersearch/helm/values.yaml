@@ -1,16 +1,16 @@
 ##############Deployment##############################
 kind: Deployment
 image:
-  ttdistribution:
+  tokentubersearch:
     env: prod
-    repository: "tokentuber.azurecr.io/ttdistribution"
+    repository: "tokentuber.azurecr.io/tokentubersearch"
     tag: "develop-44132b5a177ad8914e0266979786522f56762bc6"
     pullPolicy: "IfNotPresent"
 ##############Global_Configurations##################
 updateStrategy:
   type: RollingUpdate
-ttdistribution:
-  replicas: 2
+tokentubersearch:
+  replicas: 1
   resources:
     limits:
       memory: 1024Mi
@@ -33,14 +33,9 @@ ttdistribution:
     ports:
       - name: dist-8082
         port: 80
-        nodePort: 30058
+        nodePort: 30060
         targetPort: 8082
         protocol: TCP
 registrykey: azureregistrykey
-elasticsearch:
-  host: 23.99.120.188
-  port: 32300
-  schema: http
-  username: elastic
-  password: z5YcyudhjVcgF6JAV7bxz1h7
+
   

@@ -1,0 +1,12 @@
+name: dist
+appVersion: 1.0.0
+version: 1.0.0
+icon: https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1562228258867&di=8f4215b7a5be43763876974094654667&imgtype=0&src=http%3A%2F%2Fimg.aso.aizhan.com%2Ficon%2F2a%2F05%2F51%2F2a05510e4c167c7f6048f01ebba42f46.jpg
+sources:
+  - http://ttdistribution
+description: ttdistribution Service
+keywords:
+- ttdistribution
+maintainers:
+- name: xueyuanfeng
+  email: xueyuanfeng@cangoonline.com
