@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="612f3745-dd74-453c-9f2d-2c157d8eb8d7" name="Default" comment="add helm to tokentubersearch">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    <list default="true" id="612f3745-dd74-453c-9f2d-2c157d8eb8d7" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -142,6 +142,17 @@
               <item name="CICD" type="b2602c69:ProjectViewProjectNode" />
               <item name="CICD" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="CICD" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CICD" type="462c0819:PsiDirectoryNode" />
+              <item name="tokentubersearch" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CICD" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CICD" type="462c0819:PsiDirectoryNode" />
+              <item name="tokentubersearch" type="462c0819:PsiDirectoryNode" />
+              <item name="helm" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -272,7 +283,7 @@
       <option name="presentableId" value="Default" />
       <updated>1569469389636</updated>
       <workItem from="1569469391044" duration="1627000" />
-      <workItem from="1570584969621" duration="15589000" />
+      <workItem from="1570584969621" duration="15804000" />
     </task>
     <task id="LOCAL-00001" summary="add elasticsearch6.8">
       <created>1569469804455</created>
@@ -316,11 +327,18 @@
       <option name="project" value="LOCAL" />
       <updated>1570706160163</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="add helm to tokentubersearch">
+      <created>1570706638785</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1570706638785</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17216000" />
+    <option name="totallyTimeSpent" value="17431000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
