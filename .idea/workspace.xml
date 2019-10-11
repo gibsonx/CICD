@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="612f3745-dd74-453c-9f2d-2c157d8eb8d7" name="Default" comment="add helm to tokentubersearch">
-      <change beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/tokentubersearch/helm/templates/deployments/tokentubersearch-deployment.yaml" afterPath="$PROJECT_DIR$/tokentubersearch/helm/templates/deployments/tokentubersearch-deployment.yaml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -14,11 +14,51 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Chart.yaml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Chart.yaml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tokentubersearch/helm/Chart.yaml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="228">
+              <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="svc.yaml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tokentubersearch/helm/templates/deployments/svc.yaml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="247">
+              <caret line="13" column="62" lean-forward="true" selection-start-line="13" selection-start-column="62" selection-end-line="13" selection-end-column="62" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tokentubersearch-deployment.yaml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tokentubersearch/helm/templates/deployments/tokentubersearch-deployment.yaml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="362">
+              <caret line="51" column="49" lean-forward="true" selection-start-line="51" selection-start-column="49" selection-end-line="51" selection-end-column="49" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="values.yaml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tokentubersearch/helm/values.yaml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-357">
+              <caret line="5" column="56" lean-forward="true" selection-start-line="5" selection-start-column="56" selection-end-line="5" selection-end-column="56" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tokentuber-search-dev.groovy" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tokentubersearch/tokentuber-search-dev.groovy">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="342">
+              <caret line="51" column="76" lean-forward="true" selection-start-line="51" selection-start-column="76" selection-end-line="51" selection-end-column="92" />
               <folding />
             </state>
           </provider>
@@ -31,6 +71,8 @@
       <find>2</find>
       <find>rep</find>
       <find>ttdistribution</find>
+      <find>tokentuber</find>
+      <find>tokentubersearch</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -110,11 +152,12 @@
         <option value="$PROJECT_DIR$/ttDistribution/helm/templates/deployments/ttdistribution-deployment.yaml" />
         <option value="$PROJECT_DIR$/tokentubersearch/helm/templates/deployments/svc.yaml" />
         <option value="$PROJECT_DIR$/tokentubersearch/helm/templates/deployments/ttdistribution-deployment.yaml" />
-        <option value="$PROJECT_DIR$/tokentubersearch/helm/templates/deployments/tokentubersearch-deployment.yaml" />
         <option value="$PROJECT_DIR$/wordpress/deployment/ingress.yaml" />
         <option value="$PROJECT_DIR$/ttDistribution/helm/values.yaml" />
         <option value="$PROJECT_DIR$/tokentubersearch/helm/values.yaml" />
+        <option value="$PROJECT_DIR$/tokentubersearch/tokentuber-search-dev.groovy" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/tokentubersearch/helm/templates/deployments/tokentubersearch-deployment.yaml" />
       </list>
     </option>
   </component>
@@ -333,7 +376,7 @@
       <option name="presentableId" value="Default" />
       <updated>1569469389636</updated>
       <workItem from="1569469391044" duration="1627000" />
-      <workItem from="1570584969621" duration="21839000" />
+      <workItem from="1570584969621" duration="25093000" />
     </task>
     <task id="LOCAL-00001" summary="add elasticsearch6.8">
       <created>1569469804455</created>
@@ -405,11 +448,25 @@
       <option name="project" value="LOCAL" />
       <updated>1570779215760</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="add helm to tokentubersearch">
+      <created>1570779354747</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1570779354747</updated>
+    </task>
+    <task id="LOCAL-00012" summary="add helm to tokentubersearch">
+      <created>1570785103307</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1570785103307</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23466000" />
+    <option name="totallyTimeSpent" value="26720000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -461,9 +518,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add elasticsearch6.8" />
     <MESSAGE value="delete wrong deployment" />
-    <MESSAGE value="add helm to tokentubersearch" />
     <MESSAGE value="update s" />
-    <option name="LAST_COMMIT_MESSAGE" value="update s" />
+    <MESSAGE value="add helm to tokentubersearch" />
+    <option name="LAST_COMMIT_MESSAGE" value="add helm to tokentubersearch" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -615,14 +672,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tokentubersearch/tokentuber-search-dev.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="17" lean-forward="false" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wordpress/deployment/ingress.yaml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
@@ -639,10 +688,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tokentubersearch/helm/values.yaml">
+    <entry file="file://$PROJECT_DIR$/tokentubersearch/helm/templates/_helpers.tpl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="44" column="36" lean-forward="true" selection-start-line="44" selection-start-column="36" selection-end-line="44" selection-end-column="36" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tokentubersearch/helm/Chart.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -655,34 +712,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tokentubersearch/helm/templates/_helpers.tpl">
+    <entry file="file://$PROJECT_DIR$/tokentubersearch/tokentuber-search-dev.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tokentubersearch/helm/templates/deployments/tokentubersearch-deployment.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="46" column="10" lean-forward="true" selection-start-line="46" selection-start-column="10" selection-end-line="46" selection-end-column="10" />
+        <state relative-caret-position="342">
+          <caret line="51" column="76" lean-forward="true" selection-start-line="51" selection-start-column="76" selection-end-line="51" selection-end-column="92" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        <state relative-caret-position="38">
+          <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tokentubersearch/helm/Chart.yaml">
+    <entry file="file://$PROJECT_DIR$/tokentubersearch/helm/values.yaml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="-357">
+          <caret line="5" column="56" lean-forward="true" selection-start-line="5" selection-start-column="56" selection-end-line="5" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tokentubersearch/helm/templates/deployments/tokentubersearch-deployment.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="362">
+          <caret line="51" column="49" lean-forward="true" selection-start-line="51" selection-start-column="49" selection-end-line="51" selection-end-column="49" />
           <folding />
         </state>
       </provider>

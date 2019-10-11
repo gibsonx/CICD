@@ -1,15 +1,15 @@
 ##############Deployment##############################
 kind: Deployment
 image:
-  ttdistribution:
+  goweb:
     env: dev
-    repository: "tokentuber.azurecr.io/ttdistribution"
+    repository: "tokentuber.azurecr.io/goweb"
     tag: "develop-44132b5a177ad8914e0266979786522f56762bc6"
     pullPolicy: "IfNotPresent"
 ##############Global_Configurations##################
 updateStrategy:
   type: RollingUpdate
-ttdistribution:
+goweb:
   replicas: 1
   resources:
     limits:
@@ -26,15 +26,15 @@ ttdistribution:
   envFrom:
   ports:
     - name: dist8082
-      containerPort: 8082
+      containerPort: 8080
       protocol: TCP
   service:
     type: NodePort
     ports:
       - name: dist-8082
         port: 80
-        nodePort: 30058
-        targetPort: 8082
+        nodePort: 30070
+        targetPort: 8080
         protocol: TCP
 registrykey: azureregistrykey
   
