@@ -49,7 +49,7 @@ spec:
         - name:   ELASTICSEARCH_HOST
           value: {{ .Values.elasticsearch.host }}
         - name:  ELASTICSEARCH_PORT
-          value: {{ .Values.elasticsearch.host }}
+          value: {{ .Values.elasticsearch.port }}
         - name:  ELASTICSEARCH_SCHEMA
           value: {{ .Values.elasticsearch.schema }}
         - name:  ELASTICSEARCH_NAME
