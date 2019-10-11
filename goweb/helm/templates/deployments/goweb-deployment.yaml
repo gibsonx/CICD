@@ -46,10 +46,6 @@ spec:
 {{ toYaml .Values.envFrom | indent 8 }}
 {{- end }}
         env:
-        - name:   SPRING_DATA_MONGODB_URI
-          value: {{ .Values.mongo.uri }}
-        - name:   SPRING_DATA_MONGODB_DATABASE
-          value: {{ .Values.mongo.database }}
         - name: KUBERNETES_NAMESPACE
           valueFrom:
             fieldRef:
