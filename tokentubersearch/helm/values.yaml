@@ -37,10 +37,11 @@ tokentubersearch:
         targetPort: 8082
         protocol: TCP
 registrykey: azureregistrykey
+
 elasticsearch:
-  host: "23.99.120.188"
-  port: "32300"
-  schema: "http"
-  username: "elastic"
-  password: "z5YcyudhjVcgF6JAV7bxz1h7"
+  host: 23.99.120.188
+  port: 32300
+  schema: http
+  username: elastic
+  password: z5YcyudhjVcgF6JAV7bxz1h7
   
