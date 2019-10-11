@@ -11,20 +11,14 @@ metadata:
     nginx.ingress.kubernetes.io/session-cookie-hash: "sha1"
 spec:
   rules:
-  - host: www.tokentuber.com
+  - host: internal-dev.tokentuber.com
     http:
       paths:
       - backend:
-          serviceName: wordpress
-          servicePort: 80
-  - host: tokentuber.com
-    http:
-      paths:
-      - backend:
-          serviceName: wordpress
+          serviceName: wordpress-dev
           servicePort: 80
   tls:
   - hosts:
-    - www.tokentuber.com
+    - internal-dev.tokentuber.com
     - tokentuber.com
-    secretName: tokentuber-secret    
+    secretName: token-secret-dev
