@@ -9,7 +9,7 @@ pipeline {
     }
     environment {
         ENV = "dev"
-        project_name = "tokentuber-search"
+        project_name = "tokentubersearch"
         BRANCH = "${params.BRANCH}"
         TAGPREFIX = "${params.BRANCH}".replace("/", "-")
     }
@@ -41,20 +41,20 @@ pipeline {
                 sh "docker build -t tokentuber.azurecr.io/${project_name}:${TAGPREFIX}-${COMMIT_HASH} . && docker push tokentuber.azurecr.io/${project_name}:${TAGPREFIX}-${COMMIT_HASH}"
             }
         }
-//        stage('Release') {
-//            environment{
-//                COMMIT_HASH = readFile('COMMIT_HASH').trim()
-//
-//            }
-//            steps {
-//                dir('/home/ttengineerqa/tokentuber-tokendistributor-dev/helm') {
-//                    sh 'count=`helm list | grep -w ${project_name}-${ENV} | wc -l` && if [ $count -eq 0 ]; then \
-//                     helm install --name ${project_name}-${ENV} --set image.ttdistribution.tag=${TAGPREFIX}-${COMMIT_HASH} .; \
-//                    else \
-//                        helm upgrade ${project_name}-${ENV} --set image.ttdistribution.tag=${TAGPREFIX}-${COMMIT_HASH} . ; fi'
-//                }
-//            }
-//        }
+        stage('Release') {
+            environment{
+                COMMIT_HASH = readFile('COMMIT_HASH').trim()
+
+            }
+            steps {
+                dir('/home/ttengineerqa/cicd-dev/tokentubersearch/helm') {
+                    sh 'count=`helm list | grep -w ${project_name}-${ENV} | wc -l` && if [ $count -eq 0 ]; then \
+                     helm install --name ${project_name}-${ENV} --set image.tokentubersearch.tag=${TAGPREFIX}-${COMMIT_HASH} .; \
+                    else \
+                        helm upgrade ${project_name}-${ENV} --set image.tokentubersearch.tag=${TAGPREFIX}-${COMMIT_HASH} . ; fi'
+                }
+            }
+        }
     }
 }
 
