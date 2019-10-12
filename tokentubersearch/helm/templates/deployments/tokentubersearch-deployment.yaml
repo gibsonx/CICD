@@ -17,16 +17,16 @@ spec:
   {{- end }}
   updateStrategy:
     type: "{{ .Values.updateStrategy.type }}"
-  replicas: {{ .Values.ttdistribution.replicas }}
+  replicas: {{ .Values.tokentubersearch.replicas }}
   template:
     metadata:
       labels:
         app: "{{ .Release.Name }}"
         release: "{{ .Release.Name }}"
 #---------------------- annotations ---------------------------------
-{{- if .Values.ttdistribution.podAnnotations }}
+{{- if .Values.tokentubersearch.podAnnotations }}
       annotations:
-{{ toYaml .Values.ttdistribution.podAnnotations | indent 8 }}
+{{ toYaml .Values.tokentubersearch.podAnnotations | indent 8 }}
 {{- end }}
     spec:
       volumes:
@@ -38,8 +38,8 @@ spec:
       containers:
 #---------------------- image ---------------------------------------
       - name: "{{ .Release.Name }}"
-        image: "{{ .Values.image.ttdistribution.repository }}:{{ .Values.image.ttdistribution.tag }}"
-        imagePullPolicy: {{ .Values.image.ttdistribution.pullPolicy }}
+        image: "{{ .Values.image.tokentubersearch.repository }}:{{ .Values.image.tokentubersearch.tag }}"
+        imagePullPolicy: {{ .Values.image.tokentubersearch.pullPolicy }}
 #---------------------- env -----------------------------------------
 {{- if .Values.envFrom }}
         envFrom:
@@ -64,13 +64,13 @@ spec:
 {{- end }}
 #---------------------- ports ---------------------------------------
         ports:
-{{- if .Values.ttdistribution.ports }}
-{{ toYaml .Values.ttdistribution.ports | indent 8 }}
+{{- if .Values.tokentubersearch.ports }}
+{{ toYaml .Values.tokentubersearch.ports | indent 8 }}
 {{- end }}
 #---------------------- resources -----------------------------------
-{{- if .Values.ttdistribution.resources }}
+{{- if .Values.tokentubersearch.resources }}
         resources:
-{{ toYaml .Values.ttdistribution.resources | indent 10 }}
+{{ toYaml .Values.tokentubersearch.resources | indent 10 }}
 {{- end }}
         volumeMounts:
         - name: datetime
