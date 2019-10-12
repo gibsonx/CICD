@@ -42,6 +42,11 @@ spec:
         imagePullPolicy: {{ .Values.image.tokentubersearch.pullPolicy }}
 #---------------------- env -----------------------------------------
         env:
+{{- if .Values.envFrom }}
+      envFrom:
+{{ toYaml .Values.envFrom | indent 8 }}
+{{- end }}
+      env:
         - name: KUBERNETES_NAMESPACE
           valueFrom:
             fieldRef:
