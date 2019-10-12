@@ -41,6 +41,7 @@ spec:
         image: "{{ .Values.image.tokentubersearch.repository }}:{{ .Values.image.tokentubersearch.tag }}"
         imagePullPolicy: {{ .Values.image.tokentubersearch.pullPolicy }}
 #---------------------- env -----------------------------------------
+
 {{- if .Values.envFrom }}
       envFrom:
 {{ toYaml .Values.envFrom | indent 8 }}

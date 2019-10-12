@@ -39,9 +39,14 @@ tokentubersearch:
 registrykey: azureregistrykey
 
 env:
-  ELASTICSEARCH_HOST: 23.99.120.188
-  ELASTICSEARCH_PORT: 32300
-  ELASTICSEARCH_SCHEMA: http
-  ELASTICSEARCH_USERNAME: elastic
-  ELASTICSEARCH_PASSWORD: z5YcyudhjVcgF6JAV7bxz1h7
+  - name: ELASTICSEARCH_HOST
+    value: "23.99.120.188"
+  - name: ELASTICSEARCH_PORT
+    value: "32300"
+  - name: ELASTICSEARCH_SCHEMA
+    value: http
+  - name: ELASTICSEARCH_USERNAME
+    value: elastic
+  - name: ELASTICSEARCH_PASSWORD
+    value: "z5YcyudhjVcgF6JAV7bxz1h7"
   
