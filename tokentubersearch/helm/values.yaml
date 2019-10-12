@@ -13,10 +13,10 @@ tokentubersearch:
   replicas: 1
   resources:
     limits:
-      memory: 1024Mi
-      cpu: 500m
+      memory: 64Mi
+      cpu: 200m
     requests:
-      memory: 256Mi
+      memory: 34Mi
       cpu: 100m
   podAnnotations:
   terminationGracePeriodSeconds: 10
@@ -37,11 +37,14 @@ tokentubersearch:
         targetPort: 8082
         protocol: TCP
 registrykey: azureregistrykey
-
-elasticsearch:
-  host: 23.99.120.188
-  port: 32300
-  schema: http
-  username: elastic
-  password: z5YcyudhjVcgF6JAV7bxz1h7
-  
+env:
+  - name: ELASTICSEARCH_HOST
+    value: "23.99.120.188"
+  - name: ELASTICSEARCH_PORT 
+    value: "32300"
+  - name: ELASTICSEARCH_SCHEMA
+    value: http
+  - name: ELASTICSEARCH_USERNAME
+    value: elastic
+  - name: ELASTICSEARCH_PASSWORD
+    value: "z5YcyudhjVcgF6JAV7bxz1h7"

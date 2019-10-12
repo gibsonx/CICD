@@ -41,16 +41,7 @@ spec:
         image: "{{ .Values.image.tokentubersearch.repository }}:{{ .Values.image.tokentubersearch.tag }}"
         imagePullPolicy: {{ .Values.image.tokentubersearch.pullPolicy }}
 #---------------------- env -----------------------------------------
-{{- if .Values.envFrom }}
-        envFrom:
-{{ toYaml .Values.envFrom | indent 8 }}
-{{- end }}
         env:
-        - name:   ELASTICSEARCH_HOST
-          value: {{ .Values.elasticsearch.host }}
-        - name:    ELASTICSEARCH_PORT
-          value: {{ .Values.elasticsearch.port }}
-        - name:   SPRING_DATA_MONGODB_HOST
         - name: KUBERNETES_NAMESPACE
           valueFrom:
             fieldRef:
