@@ -17,16 +17,16 @@ spec:
   {{- end }}
   updateStrategy:
     type: "{{ .Values.updateStrategy.type }}"
-  replicas: {{ .Values.tokentubersearch.replicas }}
+  replicas: {{ .Values.ttdistribution.replicas }}
   template:
     metadata:
       labels:
         app: "{{ .Release.Name }}"
         release: "{{ .Release.Name }}"
 #---------------------- annotations ---------------------------------
-{{- if .Values.tokentubersearch.podAnnotations }}
+{{- if .Values.ttdistribution.podAnnotations }}
       annotations:
-{{ toYaml .Values.tokentubersearch.podAnnotations | indent 8 }}
+{{ toYaml .Values.ttdistribution.podAnnotations | indent 8 }}
 {{- end }}
     spec:
       volumes:
@@ -34,12 +34,12 @@ spec:
         hostPath:
           path: /etc/localtime
       imagePullSecrets:
-        - name: azureregistrykey
+        - name: default-secret
       containers:
 #---------------------- image ---------------------------------------
       - name: "{{ .Release.Name }}"
-        image: "{{ .Values.image.tokentubersearch.repository }}:{{ .Values.image.tokentubersearch.tag }}"
-        imagePullPolicy: {{ .Values.image.tokentubersearch.pullPolicy }}
+        image: "{{ .Values.image.ttdistribution.repository }}:{{ .Values.image.ttdistribution.tag }}"
+        imagePullPolicy: {{ .Values.image.ttdistribution.pullPolicy }}
 #---------------------- env -----------------------------------------
 {{- if .Values.envFrom }}
         envFrom:
@@ -48,14 +48,9 @@ spec:
         env:
         - name:   ELASTICSEARCH_HOST
           value: {{ .Values.elasticsearch.host }}
-        - name:   ELASTICSEARCH_PORT
+        - name:    ELASTICSEARCH_PORT
           value: {{ .Values.elasticsearch.port }}
-        - name:   ELASTICSEARCH_SCHEMA
-          value: {{ .Values.elasticsearch.schema }}
-        - name:   ELASTICSEARCH_USERNAME
-          value: {{ .Values.elasticsearch.username }}
-        - name:   ELASTICSEARCH_PASSWORD
-          value: {{ .Values.elasticsearch.password }}
+        - name:   SPRING_DATA_MONGODB_HOST
         - name: KUBERNETES_NAMESPACE
           valueFrom:
             fieldRef:
@@ -69,16 +64,15 @@ spec:
 {{- end }}
 #---------------------- ports ---------------------------------------
         ports:
-{{- if .Values.tokentubersearch.ports }}
-{{ toYaml .Values.tokentubersearch.ports | indent 8 }}
+{{- if .Values.ttdistribution.ports }}
+{{ toYaml .Values.ttdistribution.ports | indent 8 }}
 {{- end }}
 #---------------------- resources -----------------------------------
-{{- if .Values.tokentubersearch.resources }}
+{{- if .Values.ttdistribution.resources }}
         resources:
-{{ toYaml .Values.tokentubersearch.resources | indent 10 }}
+{{ toYaml .Values.ttdistribution.resources | indent 10 }}
 {{- end }}
         volumeMounts:
         - name: datetime
           readOnly: true
           mountPath: /etc/localtime
-

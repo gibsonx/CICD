@@ -2,7 +2,7 @@
 kind: Deployment
 image:
   ttdistribution:
-    env: dev
+    env: prod
     repository: "tokentuber.azurecr.io/ttdistribution"
     tag: "develop-44132b5a177ad8914e0266979786522f56762bc6"
     pullPolicy: "IfNotPresent"
@@ -10,7 +10,7 @@ image:
 updateStrategy:
   type: RollingUpdate
 ttdistribution:
-  replicas: 1
+  replicas: 2
   resources:
     limits:
       memory: 1024Mi
@@ -37,4 +37,7 @@ ttdistribution:
         targetPort: 8082
         protocol: TCP
 registrykey: azureregistrykey
+mongo:
+  uri: mongodb://ttdistribution:TokenPrd312@10.240.0.5:27017,10.240.0.4:27017/ttdistribution?replicaSet=tokenprod
+  database: ttdistribution
   
