@@ -13,10 +13,10 @@ tokentubersearch:
   replicas: 1
   resources:
     limits:
-      memory: 64Mi
+      memory: 512Mi
       cpu: 200m
     requests:
-      memory: 34Mi
+      memory: 256Mi
       cpu: 100m
   podAnnotations:
   terminationGracePeriodSeconds: 10
@@ -39,19 +39,13 @@ tokentubersearch:
 registrykey: azureregistrykey
 env:
   - name: ELASTICSEARCH_HOST
-    value: "23.99.120.188"
+    value: "27c53564f4464b9ca82984f17f724615.eastus2.azure.elastic-cloud.com"
   - name: ELASTICSEARCH_PORT 
-    value: "32300"
+    value: "9243"
   - name: ELASTICSEARCH_SCHEMA
-    value: http
+    value: https
   - name: ELASTICSEARCH_USERNAME
     value: elastic
   - name: ELASTICSEARCH_PASSWORD
     value: "z5YcyudhjVcgF6JAV7bxz1h7"
 
-env:
-  ELASTICSEARCH_HOST: 23.99.120.188
-  ELASTICSEARCH_PORT: 32300
-  ELASTICSEARCH_SCHEMA: http
-  ELASTICSEARCH_USERNAME: elastic
-  ELASTICSEARCH_PASSWORD: z5YcyudhjVcgF6JAV7bxz1h7

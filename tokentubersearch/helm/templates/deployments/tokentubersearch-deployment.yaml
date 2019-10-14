@@ -41,12 +41,11 @@ spec:
         image: "{{ .Values.image.tokentubersearch.repository }}:{{ .Values.image.tokentubersearch.tag }}"
         imagePullPolicy: {{ .Values.image.tokentubersearch.pullPolicy }}
 #---------------------- env -----------------------------------------
-        env:
 {{- if .Values.envFrom }}
       envFrom:
 {{ toYaml .Values.envFrom | indent 8 }}
 {{- end }}
-      env:
+        env:
         - name: KUBERNETES_NAMESPACE
           valueFrom:
             fieldRef:
