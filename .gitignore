@@ -1,6 +1,4 @@
-<<<<<<< HEAD
-=======
 /doc/
 /target/
->>>>>>> refs/remotes/origin/develop
-/.idea/
+/.*/
+/.*
