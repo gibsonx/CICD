@@ -37,4 +37,6 @@ goweb:
         targetPort: 8080
         protocol: TCP
 registrykey: azureregistrykey
+externalservers:
+    searchserverurl:http://tokentubersearch-dev
   

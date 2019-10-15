@@ -46,6 +46,8 @@ spec:
 {{ toYaml .Values.envFrom | indent 8 }}
 {{- end }}
         env:
+        - name:   SEARCHSERVERURL
+          value: {{ .Values.externalservers.searchserverurl }}
         - name: KUBERNETES_NAMESPACE
           valueFrom:
             fieldRef:
