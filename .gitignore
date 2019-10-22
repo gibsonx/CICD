@@ -1,4 +1,2 @@
-/doc/
-/target/
-/.*/
-/.*
+/.idea
+/.idea/
